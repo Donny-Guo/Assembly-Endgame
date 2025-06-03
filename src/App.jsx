@@ -30,6 +30,13 @@ export default function App() {
     }
   )
 
+  const word = "refactor"
+  const lettersElement = [...word].map((letter, index) => (
+    <div key={index} className="letter-div">
+      {letter.toUpperCase()}
+    </div>
+  ))
+
   return (
     <main>
       <header>
@@ -48,6 +55,10 @@ export default function App() {
 
       <section className="language-chips">
         {languageChipsElement}
+      </section>
+
+      <section className="guess-letter">
+        {lettersElement}
       </section>
 
     </main>
