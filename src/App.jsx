@@ -37,6 +37,13 @@ export default function App() {
     </div>
   ))
 
+  const alphabet = 'abcdefghijklmnopqrstuvwxyz'
+  const keyboardElements = alphabet.split('').map(letter => (
+    <div className='keyboard-letter'>
+      {letter.toUpperCase()}
+    </div>
+  ))
+
   return (
     <main>
       <header>
@@ -61,6 +68,13 @@ export default function App() {
         {lettersElement}
       </section>
 
+      <section className='keyboard'>
+        {keyboardElements}
+      </section>
+
+      <button className='new-game-button'>
+        New Game
+      </button>
     </main>
   )
 }

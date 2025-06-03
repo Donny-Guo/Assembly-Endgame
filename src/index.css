@@ -75,6 +75,7 @@ section.language-chips {
 section.guess-letter {
   display: flex;
   column-gap: 2px;
+  margin-bottom: 40px;
 }
 
 section.guess-letter > div {
@@ -91,4 +92,54 @@ section.guess-letter > div {
   border-bottom: solid;
   border-width: 1px;
   border-color: #F9F4DA;
+}
+
+section.keyboard {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  width: 480px;
+  justify-content: center;
+  margin-bottom: 40px;
+}
+
+div.keyboard-letter {
+  font-size: 16px;
+  font-weight: 600;
+  color: #1E1E1E;
+  background-color: #FCBA29;
+  border-radius: 4px;
+  border-style: solid;
+  border-width: 1px;
+  border-color: #D7D7D7;
+  box-sizing: border-box;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+button.new-game-button {
+  background-color: #11B5E5;
+  color: #1E1E1E;
+  border-style: solid;
+  border-color: #D7D7D7;
+  border-width: 1px;
+  box-sizing: border-box;
+  width: 228px;
+  height: 40px;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: opacity 0.15s;
+}
+
+button.new-game-button:hover {
+  opacity: 0.95;
+}
+
+button.new-game-button:active {
+  opacity: 0.8;
 }
