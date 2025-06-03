@@ -103,7 +103,7 @@ section.keyboard {
   margin-bottom: 40px;
 }
 
-div.keyboard-letter {
+button.keyboard-letter {
   font-size: 16px;
   font-weight: 600;
   color: #1E1E1E;
@@ -115,9 +115,14 @@ div.keyboard-letter {
   box-sizing: border-box;
   width: 40px;
   height: 40px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+}
+
+button.correct {
+  background-color: #10A95B;
+}
+
+button.wrong {
+  background-color: #EC5D49;
 }
 
 button.new-game-button {
