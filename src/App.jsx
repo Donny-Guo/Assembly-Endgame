@@ -19,18 +19,22 @@ export default function App() {
     </>
   )
 
-  const languageChipsElement = languages.map(language => {
+  const languageChipsElement = languages.map((language, index) => {
       const styles = {
         backgroundColor: language.backgroundColor,
         color: language.color,
-        textAlign: "center",
-        padding: "4px",
-        borderRadius: "3px",
-        fontSize: "12px",
-        fontWeight: "bold",
       }
+      const className = clsx({
+        chip: true,
+        lost: index < wrongGuessCount,
+      })
+      
       return (
-        <div key={language.name} style={styles}>
+        <div 
+          className={className}
+          key={language.name} 
+          style={styles} 
+        >
           {language.name}
         </div>
       )
@@ -97,9 +101,12 @@ export default function App() {
         {keyboardElements}
       </section>
 
-      <button className='new-game-button'>
-        New Game
-      </button>
+      <section className='new-game-section'>
+        <button className='new-game-button'>
+          New Game
+        </button>
+      </section>
+      
     </main>
   )
 }
