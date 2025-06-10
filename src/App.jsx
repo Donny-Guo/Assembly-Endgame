@@ -1,5 +1,6 @@
 import { useState } from "react"
-import { languages } from "./languages.js"
+import { languages } from "./languages"
+import { getFarewellText } from "./utils"
 import clsx from 'clsx'
 
 export default function App() {
@@ -15,26 +16,10 @@ export default function App() {
     currentWord.split("").every(letter => selectedLetters.includes(letter))
   const isGameLost = wrongGuessCount >= languages.length
   const isGameOver = isGameWon || isGameLost
+  const isLastGuessIncorrect = wrongGuessCount > 0 && !currentWord.includes(selectedLetters[selectedLetters.length - 1])
 
   // Static values
   const alphabet = 'abcdefghijklmnopqrstuvwxyz'
-
-  const gameStatusElement = (
-    isGameOver ? (
-      isGameWon ? (
-        <>
-          <h3>You win!</h3>
-          <p>Well done! 🎉</p>
-        </>
-      ) : (
-        <>
-          <h3>Game over!</h3>
-          <p>You lose! Better start learning Assembly 😭</p>
-        </>
-      )
-     ) : (
-      null
-  ))
 
   const languageChipsElement = languages.map((language, index) => {
     const styles = {
@@ -57,6 +42,34 @@ export default function App() {
     )
   }
   )
+
+  const generateGameStatus = () => {
+    if (isGameOver) {
+      return (
+        isGameWon ? (
+          <>
+            <h3>You win!</h3>
+            <p>Well done! 🎉</p>
+          </>
+        ) : (
+          <>
+            <h3>Game over!</h3>
+            <p>You lose! Better start learning Assembly 😭</p>
+          </>
+        )
+      )
+    } else {
+      if (isLastGuessIncorrect) {
+        const lastLostLanguage = languages[wrongGuessCount - 1].name
+        return (
+          <>
+            <p>{getFarewellText(lastLostLanguage)}</p>
+          </>
+        )
+      }
+      return null
+    }
+  }
 
   const lettersElement = [...currentWord].map((letter, index) => (
     <div key={index} className="letter-div">
@@ -93,6 +106,7 @@ export default function App() {
     "game-status": true,
     won: isGameWon,
     lost: isGameLost,
+    farewell: !isGameOver && isLastGuessIncorrect,
   })
 
   return (
@@ -108,7 +122,7 @@ export default function App() {
 
 
       <section className={gameStatusClass}>
-        {gameStatusElement}
+        {generateGameStatus()}
       </section>
 
       <section className="language-chips">
