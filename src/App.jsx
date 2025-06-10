@@ -88,8 +88,11 @@ export default function App() {
     })
 
     return (
-      <button key={letter}
-        className={className} onClick={() => handleClick(letter)}
+      <button 
+        key={letter}
+        className={className} 
+        onClick={() => handleClick(letter)}
+        disabled={isGameOver}
       >
         {letter.toUpperCase()}
       </button>
@@ -97,7 +100,7 @@ export default function App() {
   })
 
   function handleClick(letter) {
-    if (!selectedLetters.includes(letter) && !isGameOver) {
+    if (!selectedLetters.includes(letter)) {
       setSelectedLetters(prev => [...prev, letter])
     }
   }

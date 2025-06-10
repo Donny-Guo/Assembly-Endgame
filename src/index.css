@@ -164,6 +164,11 @@ button.wrong {
   background-color: #EC5D49;
 }
 
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
 section.new-game-section {
   width: 228px;
   height: 40px;
