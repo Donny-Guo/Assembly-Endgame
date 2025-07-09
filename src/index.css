@@ -133,6 +133,10 @@ section.guess-letter>div {
   border-color: #F9F4DA;
 }
 
+section.guess-letter>div.missed-letter {
+  color: #EC5D49;
+}
+
 section.keyboard {
   display: flex;
   gap: 8px;

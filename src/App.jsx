@@ -78,11 +78,17 @@ export default function App() {
     }
   }
 
-  const lettersElement = [...currentWord].map((letter, index) => (
-    <div key={index} className="letter-div">
-      {selectedLetters.includes(letter) ? letter.toUpperCase() : undefined}
-    </div>
-  ))
+  const lettersElement = [...currentWord].map((letter, index) => {
+    const className = clsx(
+      isGameLost && !selectedLetters.includes(letter) && "missed-letter"
+    )
+    const shouldRevealLetter = isGameLost || selectedLetters.includes(letter);
+    return (
+      <div key={index} className={className}>
+        {shouldRevealLetter ? letter.toUpperCase() : undefined}
+      </div>
+    )
+  });
 
   const keyboardElements = alphabet.split('').map(letter => {
     const isSelected = selectedLetters.includes(letter)
