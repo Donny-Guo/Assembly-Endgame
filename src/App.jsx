@@ -56,7 +56,10 @@ export default function App() {
           <>
             <h3>You win!</h3>
             <p>Well done! 🎉</p>
-            <Confetti />
+            <Confetti 
+              recycle={false}
+              numberOfPieces={1000}
+            />
           </>
         ) : (
           <>
