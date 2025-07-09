@@ -1,12 +1,17 @@
 import { useState } from "react"
 import { languages } from "./languages"
-import { getFarewellText } from "./utils"
+import { getFarewellText, pickRandomWord } from "./utils"
 import clsx from 'clsx'
 
 export default function App() {
   // State values
-  const [currentWord, setCurrentWord] = useState('react')
+  const [currentWord, setCurrentWord] = useState(() => pickRandomWord());
   const [selectedLetters, setSelectedLetters] = useState([])
+
+  const startNewGame = () => {
+    setSelectedLetters([]);
+    setCurrentWord(pickRandomWord());
+  };
 
   // Derived values
   const wrongGuessCount = selectedLetters.reduce((res, letter) => {
@@ -93,6 +98,8 @@ export default function App() {
         className={className} 
         onClick={() => handleClick(letter)}
         disabled={isGameOver}
+        aria-disabled={selectedLetters.includes(letter)}
+        aria-label={`Letter ${letter}`}
       >
         {letter.toUpperCase()}
       </button>
@@ -124,7 +131,11 @@ export default function App() {
       </header>
 
 
-      <section className={gameStatusClass}>
+      <section 
+        aria-live="polite" 
+        role="status"
+        className={gameStatusClass}
+      >
         {generateGameStatus()}
       </section>
 
@@ -141,9 +152,13 @@ export default function App() {
       </section>
 
       <section className='new-game-section'>
-        {isGameOver && <button className='new-game-button'>
-          New Game
-        </button>
+        {isGameOver && 
+          <button 
+            className='new-game-button'
+            onClick={startNewGame}
+          >
+            New Game
+          </button>
         }
       </section>
 
