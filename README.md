@@ -13,7 +13,7 @@ A programming-themed word guessing game where your coding knowledge is put to th
 
 ```bash
 # Clone the repository
-git clone <your-repo-url>
+git clone https://github.com/Donny-Guo/Assembly-Endgame.git
 
 # Navigate to project directory
 cd assembly-endgame
