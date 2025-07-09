@@ -1,7 +1,8 @@
 import { useState } from "react"
 import { languages } from "./languages"
 import { getFarewellText, pickRandomWord } from "./utils"
-import clsx from 'clsx'
+import clsx from 'clsx';
+import Confetti from 'react-confetti';
 
 export default function App() {
   // State values
@@ -17,7 +18,7 @@ export default function App() {
   const wrongGuessCount = selectedLetters.reduce((res, letter) => {
     return !currentWord.includes(letter) ? res + 1 : res
   }, 0)
-  const isGameWon = 
+  const isGameWon =
     currentWord.split("").every(letter => selectedLetters.includes(letter))
   const isGameLost = wrongGuessCount >= languages.length
   const isGameOver = isGameWon || isGameLost
@@ -55,6 +56,7 @@ export default function App() {
           <>
             <h3>You win!</h3>
             <p>Well done! 🎉</p>
+            <Confetti />
           </>
         ) : (
           <>
@@ -93,9 +95,9 @@ export default function App() {
     })
 
     return (
-      <button 
+      <button
         key={letter}
-        className={className} 
+        className={className}
         onClick={() => handleClick(letter)}
         disabled={isGameOver}
         aria-disabled={selectedLetters.includes(letter)}
@@ -131,8 +133,8 @@ export default function App() {
       </header>
 
 
-      <section 
-        aria-live="polite" 
+      <section
+        aria-live="polite"
         role="status"
         className={gameStatusClass}
       >
@@ -152,8 +154,8 @@ export default function App() {
       </section>
 
       <section className='new-game-section'>
-        {isGameOver && 
-          <button 
+        {isGameOver &&
+          <button
             className='new-game-button'
             onClick={startNewGame}
           >
